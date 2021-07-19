@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Application from '@ioc:Adonis/Core/Application'
-import { exec } from 'child_process';
+import fs from 'fs'
+import path from 'path'
 
 export default class SessionsController {
     static captchaMap = {};
@@ -59,9 +59,15 @@ export default class SessionsController {
         let data = ctx.request.except(['_csrf']);
         if(SessionsController.captchaMap[ctx.session.sessionId] == data['captcha']) {
             ctx.session.put('user_name',data['user_name']);
-            let res = Application.makePath(`users/${ctx.session.get('user_name')}/`);
+            let res = path.join(__dirname, 'users');
             console.log("Path = ",res);
-            exec(`mkdir ${res}`);
+            fs.mkdir(res,
+            { recursive: true }, (err) => {
+                if (err) {
+                return console.error(err);
+                }
+                console.log('Directory created successfully!');
+            });
         }
         else {
             ctx.session.flash('error','Captcha Mismatched');
