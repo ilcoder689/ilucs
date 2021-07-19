@@ -1,4 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Application from '@ioc:Adonis/Core/Application'
+import { exec } from 'child_process';
 
 export default class SessionsController {
     static captchaMap = {};
@@ -57,6 +59,9 @@ export default class SessionsController {
         let data = ctx.request.except(['_csrf']);
         if(SessionsController.captchaMap[ctx.session.sessionId] == data['captcha']) {
             ctx.session.put('user_name',data['user_name']);
+            let res = Application.makePath(`users/${ctx.session.get('user_name')}/`);
+            console.log("Path = ",res);
+            exec(`mkdir ${res}`);
         }
         else {
             ctx.session.flash('error','Captcha Mismatched');
