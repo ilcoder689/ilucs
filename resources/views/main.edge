@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILUCS | Terminal</title>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body class="flex flex-col h-screen">
+  <div class="background"></div>
+
+  <!-- Main content start -->
+  <div class="flex-auto flex flex-col md:flex-row lg:flex-row flex-wrap justify-around content-evenly mr-1 overflow-hidden" id="desktop">
+      <div class="flex flex-col w-6/12 h-3/6 min-width-height resize overflow-auto max-w-full max-h-full mt-1 rounded-t" id="terminal" draggable="true">
+        <div class="flex-initial relative text-white" id="header" style="background-color: rgba(85,83,75,0.86);">
+          <div class="inline-block text-black ml-2 my-1 border-solid rounded-full h-6 w-6 bg-red-500 text-center cursor-pointer hover:bg-red-300" id='close'>&times;</div>
+          <div class="inline-block text-black mr-2 my-1 border-solid rounded-full h-6 w-6 bg-gray-500 text-center cursor-pointer hover:bg-gray-300" id='maximize'>&#9634;</div>
+            {{session.get('user_name')}}@ilucs: ~
+          <button class="absolute right-0 bg-purple-600 hover:bg-purple-700 focus:outline-none mx-2 p-1 px-2 rounded" type="button" id='upload_file'>Upload File</button>
+          <form method='POST' enctype="multipart/form-data" action="{{ route('CommandsController.upload') }}" class="hidden" id="uploadForm">
+            {{ csrfField() }}
+            <input type="file" accept='*/*' class="hidden" name='upload_file'  id='upload_input'/>
+          </form>
+        </div>
+        <div class="flex-auto text-white overflow-y-auto p-2" id="terminal_content" style="background-color: rgba(48,10,36,1.0);">
+          <div id="terminal_content_static"></div>
+          <div id="terminal_command">
+            {{ csrfField() }}
+            <div id="terminal_initial" class="terminal_initial">{{session.get('user_name')}}@ilucs:~$&nbsp;&nbsp;</div>
+            <pre id="terminal_command_left"></pre>
+            <span id="blink">|</span>
+            <pre id="terminal_command_right"></pre>
+          </div>
+          <input type="text" id="terminal_content_input" autofocus/>
+        </div>
+      </div>
+  </div>
+  <!-- Main content end -->
+
+  @if(flashMessages.has('message')) 
+      <script type="text/javascript">
+        alert("{{ flashMessages.get('message') }}")
+      </script>
+  @endif
+
+
+  <!-- Footer Start -->
+  <footer class="text-center text-2xl p-2 text-black flex-initial ml-16" id="footer">
+  </footer>
+  <!-- Footer end -->
+
+</body>
+
+</html>

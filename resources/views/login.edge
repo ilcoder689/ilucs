@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILUCS | Login</title>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body class="flex flex-col h-screen">
+  <div class="background_login"></div>
+
+  <!-- Main content start -->
+  <div class="flex-auto flex flex-col md:flex-col lg:flex-col flex-wrap justify-around content-evenly mr-1 overflow-hidden">
+      <form action="{{ route('SessionsController.login') }}" method='POST' class="bg-indigo-300 mb-6 p-4 w-10/12 md:w-8/12 lg:w-4/12">
+        {{ csrfField() }}
+        <h3 class="text-3xl font-medium leading-6 text-gray-900 text-center mb-8">Login</h3>
+            <div class="flex flex-row justify-between mb-4">
+                <label class="mb-2 font-bold text-lg text-grey-darkest" for="user_name">Username</label>
+                <input type='text' class="border py-2 px-3 text-grey-darkest" name='user_name' id='user_name' placeholder='Enter your name' required>
+            </div>
+            <div class="flex flex-row justify-between mb-4">
+              <canvas id="captcha"></canvas>
+              <input type='text' class="border py-2 px-3 text-grey-darkest" name='captcha' maxlength="6" placeholder='Enter Captcha' required>
+            </div>
+            @if(flashMessages.has('error'))
+              <span class='error'>{{ flashMessages.get('error') }}</span>
+            @endif
+            <button class="block text-white uppercase text-lg mx-auto p-4 rounded" type="submit" style="background-color: teal;">Login</button>
+      </form>
+  </div>
+  <!-- Main content end -->
+
+
+  <!-- Footer Start -->
+  <footer class="text-center text-2xl p-2 text-black flex-initial ml-16" id="footer">
+  </footer>
+  <!-- Footer end -->
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#footer').html(`&copy; Copyright ${new Date().getFullYear()} Piyush Garg`);  
+    });
+  </script>
+
+  {{{captchaHTML}}}
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Andika');
+
+* {
+    box-sizing: border-box;
+    font-family: Andika, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    background: url("../../public/images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1.0;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
+
+.background_login {
+    background: #eb01a5;
+    background-image: url("../../public/images/background_login.jpg"); /* fallback */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.726)), url("../../public/images/background_login.jpg"); /* W3C */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1.0;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
+
+#captcha {
+    width: 40%;
+    height: 50px;
+    border: 1px solid #000000;
+}
+
+.error {
+    color: darkred;
+    font-weight: 900;
+}
+
+#terminal {
+    background-color: rgba(48,10,36,1.0);
+}
+
+#terminal_content_input
+{
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 0;
+}
+
+#blink {
+    color: white;
+    font-weight: 900;
+}
+
+.terminal_initial {
+    display: inline;
+    color: limegreen;
+}
+
+#terminal_command {
+    display: inline;
+}
+
+#terminal_command_left, #terminal_command_right {
+    display: inline;
+    color: white;
+    /* overflow-wrap: break-word; */
+    background: transparent;
+    border: none; 
+    outline: none;
+    word-wrap: break-word;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.min-width-height {
+    min-height: 50%;
+    min-width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .min-width-height {
+        min-width: 100%;
+    }
+}
