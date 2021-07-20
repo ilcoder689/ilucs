@@ -32,7 +32,8 @@ export default class CommandsController {
     {
         const file = ctx.request.file('upload_file');
         if(file) {
-            await file.move(Application.tmpPath(`users/${ctx.session.get('user_name')}/`));
+            const res = await file.move(Application.tmpPath(`users/${ctx.session.get('user_name')}/`));
+            console.log("File upload result = ",res);
         }
         ctx.session.flash('message', 'File Uploaded Successfully');
         ctx.response.redirect('/')

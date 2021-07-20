@@ -89,11 +89,12 @@ $(document).ready(function () {
         }
         else if(ev.key == 'Enter') {
             let html = $("#terminal_content_static").html();
-            let data1 = $("#terminal_command_left").html();
-            let data2 = $("#terminal_command_right").html();
+            let data1 = $("#terminal_command_left").text();
+            let data2 = $("#terminal_command_right").text();
             let data3 = $("#terminal_initial").html();
             let csrf = $("#terminal_command input[name='_csrf']").val()
             let command = `${data1}${data2}`;
+            console.log("Command = ",command);
             // console.log(csrf);
             $('#terminal_content_input').attr('disabled',true);    
             //send to server and receive result
@@ -135,8 +136,11 @@ $(document).ready(function () {
     $('#terminal_content_input').on('input', function(ev) {
         ev = ev.originalEvent;
         let ch = $('#terminal_content_input').val();
+        // console.log('CH = ',ch);
         if(ch) {
+            // console.log("Char added");
             addCharLeft(ch[ch.length-1]);
+            // console.log($("#terminal_command_left").html(),$("#terminal_command_left").text());
         }
         $('#terminal_content_input').val('');
         $('#terminal_content_input').focus();
