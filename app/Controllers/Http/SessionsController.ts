@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import fs from 'fs'
-import path from 'path'
+import Application from '@ioc:Adonis/Core/Application'  
 
 export default class SessionsController {
     static captchaMap = {};
@@ -59,7 +59,7 @@ export default class SessionsController {
         let data = ctx.request.except(['_csrf']);
         if(SessionsController.captchaMap[ctx.session.sessionId] == data['captcha']) {
             ctx.session.put('user_name',data['user_name']);
-            let res = path.join(__dirname, 'users');
+            let res = Application.tmpPath(`users/${ctx.session.get('user_name')}/`);
             console.log("Path = ",res);
             fs.mkdir(res,
             { recursive: true }, (err) => {
