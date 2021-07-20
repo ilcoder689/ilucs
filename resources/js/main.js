@@ -6,11 +6,11 @@ $(document).ready(function () {
         $('#terminal').toggleClass('h-full');
         $('#terminal').toggleClass('h-3/6');
         if($('#terminal').hasClass('h-full')){
-            console.log('Change to Restore');
+            // console.log('Change to Restore');
             $(this).html('&#10697;');
         }
         else {
-            console.log('Change to maximize');
+            // console.log('Change to maximize');
             $(this).html('&#9634;');
         }
     });
@@ -94,7 +94,7 @@ $(document).ready(function () {
             let data3 = $("#terminal_initial").html();
             let csrf = $("#terminal_command input[name='_csrf']").val()
             let command = `${data1}${data2}`;
-            console.log("Command = ",command);
+            // console.log("Command = ",command);
             // console.log(csrf);
             $('#terminal_content_input').attr('disabled',true);    
             //send to server and receive result

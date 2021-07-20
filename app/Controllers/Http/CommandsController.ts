@@ -6,10 +6,10 @@ function execute(data:any)
 {
     return new Promise((resolve) => {
         let command = data['command'];
-        // let user = data['user_name'];
+        let user = data['user_name'];
         // console.log(data);
         let res = '';
-        exec(`${command}`, (error, stdout, stderr) => {
+        exec(`cd build/tmp/users/${user} && ${command}`, (error, stdout, stderr) => {
             if(error) {
                 // console.log("Error = ",error);
                 // console.error(error);
@@ -32,8 +32,7 @@ export default class CommandsController {
     {
         const file = ctx.request.file('upload_file');
         if(file) {
-            const res = await file.move(Application.tmpPath(`users/${ctx.session.get('user_name')}/`));
-            console.log("File upload result = ",res);
+            await file.move(Application.tmpPath(`users/${ctx.session.get('user_name')}/`));
         }
         ctx.session.flash('message', 'File Uploaded Successfully');
         ctx.response.redirect('/')
