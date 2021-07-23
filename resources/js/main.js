@@ -109,6 +109,7 @@ $(document).ready(function () {
                 .then(function(res) {return res.text()})
                 .then(function (res) { 
                     res = sanitizeHTML(res);
+                    command = sanitizeHTML(command);
                     // console.log(res); 
                     $('#terminal_content_input').attr('disabled',false);
                     html += `<div class='terminal_initial'>${data3}</div>`
@@ -140,7 +141,7 @@ $(document).ready(function () {
         if(ch) {
             // console.log("Char added");
             addCharLeft(ch[ch.length-1]);
-            console.log($("#terminal_command_left").text(), $("#terminal_command_right").text());
+            // console.log($("#terminal_command_left").text(), $("#terminal_command_right").text());
         }
         $('#terminal_content_input').val('');
         $('#terminal_content_input').focus();
