@@ -29,40 +29,40 @@ $(document).ready(function () {
 
     function setBlinkLeft() 
     {
-        let leftVal = $('#terminal_command_left').html();
-        let rightVal = $('#terminal_command_right').html();
+        let leftVal = $('#terminal_command_left').text();
+        let rightVal = $('#terminal_command_right').text();
         if(leftVal) {
-            $('#terminal_command_right').html(leftVal[leftVal.length - 1] + rightVal);
-            $('#terminal_command_left').html(leftVal.slice(0,-1));
+            $('#terminal_command_right').text(leftVal[leftVal.length - 1] + rightVal);
+            $('#terminal_command_left').text(leftVal.slice(0,-1));
         }
     }
 
     function setBlinkRight() 
     {
-        let leftVal = $('#terminal_command_left').html();
-        let rightVal = $('#terminal_command_right').html();
+        let leftVal = $('#terminal_command_left').text();
+        let rightVal = $('#terminal_command_right').text();
         if(rightVal) {
-            $('#terminal_command_left').html(leftVal + rightVal[0]);
-            $('#terminal_command_right').html(rightVal.slice(1));
+            $('#terminal_command_left').text(leftVal + rightVal[0]);
+            $('#terminal_command_right').text(rightVal.slice(1));
         }
     }
 
     function addCharLeft(ch)
     {
-        let leftVal = $('#terminal_command_left').html();
-        $('#terminal_command_left').html(leftVal + ch);
+        let leftVal = $('#terminal_command_left').text();
+        $('#terminal_command_left').text(leftVal + ch);
     }
 
     function deleteCharLeft()
     {
-        let leftVal = $('#terminal_command_left').html();
-        $('#terminal_command_left').html(leftVal.slice(0,-1));
+        let leftVal = $('#terminal_command_left').text();
+        $('#terminal_command_left').text(leftVal.slice(0,-1));
     }
 
     function deleteCharRight()
     {
-        let rightVal = $('#terminal_command_right').html();
-        $('#terminal_command_right').html(rightVal.slice(1));
+        let rightVal = $('#terminal_command_right').text();
+        $('#terminal_command_right').text(rightVal.slice(1));
     }
 
     function sanitizeHTML(text) {
@@ -140,7 +140,7 @@ $(document).ready(function () {
         if(ch) {
             // console.log("Char added");
             addCharLeft(ch[ch.length-1]);
-            // console.log($("#terminal_command_left").html(),$("#terminal_command_left").text());
+            console.log($("#terminal_command_left").text(), $("#terminal_command_right").text());
         }
         $('#terminal_content_input').val('');
         $('#terminal_content_input').focus();
