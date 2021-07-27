@@ -72,7 +72,7 @@ $(document).ready(function () {
         return result;
     }
 
-    $('#terminal_content_input').on('keyup', function(ev) {
+    $('#terminal_content_input').on('keydown', function(ev) {
         ev = ev.originalEvent;
         // console.log(ev.key);
         if(ev.key == 'ArrowLeft') {
@@ -111,11 +111,23 @@ $(document).ready(function () {
                 .then(function (res) { 
                     res = sanitizeHTML(res);
                     command = sanitizeHTML(command);
+                    if(command.trim().toLowerCase() == 'exit')
+                    {
+                        $('#close').click();
+                    }
+                    else if(command.trim().toLowerCase() == '')
+                    {
+                        html += `<div class='terminal_initial'>${data3}</div>`
+                        html += `<div class='inline'>${command}</div>`;
+                        html += `<pre></pre>`;
+                    }
+                    else {
+                        html += `<div class='terminal_initial'>${data3}</div>`
+                        html += `<div class='inline'>${command}</div>`;
+                        html += `<pre>${res}</pre>`;
+                    }
                     // console.log(res); 
                     $('#terminal_content_input').attr('disabled',false);
-                    html += `<div class='terminal_initial'>${data3}</div>`
-                    html += `<div class='inline'>${command}</div>`;
-                    html += `<pre>${res}</pre>`;
                     $("#terminal_content_static").html(html);
                     if(command.trim().toLowerCase() == 'clear')
                     {
