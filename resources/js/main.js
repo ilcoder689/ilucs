@@ -94,6 +94,7 @@ $(document).ready(function () {
             let data3 = $("#terminal_initial").html();
             let csrf = $("#terminal_command input[name='_csrf']").val()
             let command = `${data1}${data2}`;
+
             // console.log("Command = ",command);
             // console.log(csrf);
             $('#terminal_content_input').attr('disabled',true);    
@@ -116,6 +117,10 @@ $(document).ready(function () {
                     html += `<div class='inline'>${command}</div>`;
                     html += `<pre>${res}</pre>`;
                     $("#terminal_content_static").html(html);
+                    if(command.trim().toLowerCase() == 'clear')
+                    {
+                        $("#terminal_content_static").html('');
+                    }
                     $("#terminal_command_left").html('');
                     $("#terminal_command_right").html('');
                     $('#terminal_content').animate({scrollTop: $('#terminal_content').prop("scrollHeight")},1000);

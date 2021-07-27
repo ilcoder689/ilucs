@@ -26,7 +26,6 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.726)), url("../../public/images/background_login.jpg"); /* W3C */
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     width: 100vw;
     height: 100vh;
     opacity: 1.0;
