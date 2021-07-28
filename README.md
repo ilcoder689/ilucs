@@ -16,9 +16,9 @@ Access live version of ILUCS at [https://ilucs.herokuapp.com/](https://ilucs.her
 * Node.js
 
 ## **Screenshots**
-![Login Screen](/screenshots/SS1.png)
+![Login Screen](screenshots/SS1.PNG)
 
-![Terminal Screen](/screenshots/SS2.png)
+![Terminal Screen](screenshots/SS2.PNG)
 
 ## **Deployment Platform**
 >Heroku
