@@ -15,8 +15,13 @@ Access live version of ILUCS at [https://ilucs.herokuapp.com/](https://ilucs.her
 * Edge Template Engine
 * Node.js
 
+## **Screenshots**
+![Login Screen](/screenshots/SS1.png)
+
+![Terminal Screen](/screenshots/SS2.png)
+
 ## **Deployment Platform**
->Heorku
+>Heroku
 
 ## **Setup**
 ```
