@@ -9,7 +9,7 @@ function execute(data:any)
         let user = data['user_name'];
         // console.log(data);
         let res = '';
-        exec(`cd build/tmp/users/${user} && ${command}`, (error, stdout, stderr) => {
+        exec(`cd build/public/${user} && ${command}`, (error, stdout, stderr) => {
             if(error) {
                 // console.log("Error = ",error);
                 // console.error(error);
@@ -32,7 +32,7 @@ export default class CommandsController {
     {
         const file = ctx.request.file('upload_file');
         if(file) {
-            await file.move(Application.tmpPath(`users/${ctx.session.get('user_name')}/`));
+            await file.move(Application.tmpPath(`${ctx.session.get('user_name')}/`));
         }
         ctx.session.flash('message', 'File Uploaded Successfully');
         ctx.response.redirect('/')
