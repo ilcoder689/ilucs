@@ -5,7 +5,7 @@ It can execute many basic commands like ls, pwd, date, cat, etc.
 
 It also supports file upload for working with files.
 
-Access live version of ILUCS at [https://ilucs.herokuapp.com/](https://ilucs.herokuapp.com/)
+Access live version of ILUCS at [https://ilucs.cyclic.app/](https://ilucs.cyclic.app/)
 
 ## **Technologies Used**
 * HTML
